@@ -1,6 +1,6 @@
-import AuthStyles from "@/components/authStyles";
+import AuthStyles from "@/components/global/authStyles";
 import { SignIn } from "@clerk/nextjs";
-import React from "react";
+import React, { Suspense } from "react";
 
 const page = () => {
   return (

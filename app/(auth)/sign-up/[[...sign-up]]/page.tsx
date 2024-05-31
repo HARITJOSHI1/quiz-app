@@ -1,4 +1,4 @@
-import AuthStyles from "@/components/authStyles";
+import AuthStyles from "@/components/global/authStyles";
 import { SignUp } from "@clerk/nextjs";
 import React from "react";
 

@@ -1,7 +1,7 @@
 import { SignIn } from "@clerk/nextjs";
 import Image from "next/image";
-import React, { ReactNode } from "react";
-import { ScrollArea } from "./ui/scroll-area";
+import React, { ReactNode, Suspense } from "react";
+import { ScrollArea } from "../ui/scroll-area";
 
 type Props = {
   children: ReactNode;
@@ -19,6 +19,7 @@ const AuthStyles = ({ children }: Props) => {
               fill
               objectFit="cover"
               className="rounded-t-md md:rounded-md"
+              priority
             />
           </div>
           <div>{children}</div>
