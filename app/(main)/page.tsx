@@ -1,7 +1,5 @@
-import HeroSVG from "@/components/global/HeroSVG";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 
 const techStack = [
@@ -62,7 +60,7 @@ const HeroSliderComponent = () => {
   );
 };
 
-const page = () => {
+const page = async () => {
   return (
     <>
       <div className="w-full">
@@ -90,13 +88,6 @@ const page = () => {
           <span className="text-md text-slate-600">
             Unleash Your Knowledge. Challenge Your Friends. Master the Game.
           </span>
-
-          <Link
-            href={"/dashboard"}
-            className="bg-teal-500 text-white p-2 px-7 rounded-md hover:bg-teal-600 w-2/5 mt-10 text-center"
-          >
-            Get started
-          </Link>
         </div>
 
         <div className="mt-4 h-lvh w-full relative md:relative md:h-full md:w-full rounded-md drop-shadow-custom p-10">
@@ -139,7 +130,10 @@ const page = () => {
       </section>
 
       <section className="h-[70vh] md:h-[70vh] min-[900px]:h-lvh mt-24 relative flex flex-col items-center overflow-hidden">
-        <span className="text-4xl font-bold text-center md:text-6xl"> Tech stack used</span>
+        <span className="text-4xl font-bold text-center md:text-6xl">
+          {" "}
+          Tech stack used
+        </span>
         <div className="flex flex-col md:flex-row md:overflow-hidden mt-12">
           <HeroSliderComponent />
         </div>

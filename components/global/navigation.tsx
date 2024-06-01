@@ -2,13 +2,25 @@
 
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { ChevronDown } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
+import { Button } from "../ui/button";
+import { createOrGetUser } from "@/lib/actions";
+import { useRouter } from "next/navigation";
+
+export type DBUserInfo = {
+  user: {
+    name: string;
+    email: string;
+    clerkUserId: string;
+  };
+};
 
 const navMenu = ["Pricing", "About", "Documentation", "Features"];
-const Navigation = () => {
+const Navigation = ({ user }: DBUserInfo) => {
   const [showNavOpts, setShowNavOpts] = useState(false);
+  const { name, email, clerkUserId } = user;
+  const router = useRouter();
 
   return (
     <>
@@ -67,12 +79,19 @@ const Navigation = () => {
             <UserButton
               appearance={{ elements: { avatarBox: "w-[40px] h-[40px]" } }}
             />
-            <Link
-              href={"/dashboard"}
+            <Button
+              onClick={async () => {
+                const user = await createOrGetUser({
+                  name,
+                  email,
+                  clerkUserId,
+                });
+                router.push(`/dashboard/${user.id}`);
+              }}
               className="bg-teal-500 text-white p-2 px-7 rounded-md hover:bg-teal-600"
             >
               Dashboard
-            </Link>
+            </Button>
           </SignedIn>
         </aside>
       </div>

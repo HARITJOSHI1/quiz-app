@@ -1,4 +1,5 @@
 import Navigation from "@/components/global/navigation";
+import ClientClerkProvider from "@/providers/clerk-provider";
 import { currentUser } from "@clerk/nextjs/server";
 import React, { ReactNode } from "react";
 
@@ -7,10 +8,19 @@ type Props = {
 };
 
 const layout = async ({ children }: Props) => {
+  const user = await currentUser();
   return (
     <main className="h-full">
-      <Navigation />
-      {children}
+      <ClientClerkProvider>
+        <Navigation
+          user={{
+            name: user?.fullName!,
+            email: user?.primaryEmailAddress?.emailAddress!,
+            clerkUserId: user?.id!,
+          }}
+        />
+        {children}
+      </ClientClerkProvider>
     </main>
   );
 };
