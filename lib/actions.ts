@@ -2,6 +2,11 @@
 
 import { db } from "@/db";
 import { Answers, Quiz } from "@prisma/client";
+import {
+  PrismaClientInitializationError,
+  PrismaClientKnownRequestError,
+  PrismaClientUnknownRequestError,
+} from "@prisma/client/runtime/library";
 import { revalidatePath } from "next/cache";
 
 export const createQuiz = async (quiz: Quiz) => {
@@ -24,21 +29,38 @@ export const createOrGetUser = async (user: {
   email: string;
   clerkUserId: string;
 }) => {
+  try {
+    console.log(
+      "Searching already exist user user logged database instance",
+      db
+    );
 
-  console.log('Searching already exist user user logged database instance', db);
+    const alreadyUser = await db.user.findUnique({
+      where: { clerkUserId: user.clerkUserId },
+    });
 
-  const alreadyUser = await db.user.findUnique({
-    where: { clerkUserId: user.clerkUserId },
-  });
+    if (alreadyUser) return alreadyUser;
 
-  if (alreadyUser) return alreadyUser;
+    console.log("Before creating a user");
 
-  console.log('Before creating a user');
-  
-  const newUser = await db.user.create({ data: user });
-  console.log("Here is my user", newUser);
+    const newUser = await db.user.create({ data: user });
+    console.log("Here is my user", newUser);
 
-  return newUser;
+    return newUser;
+  } catch (e) {
+    if (
+      e instanceof PrismaClientInitializationError ||
+      e instanceof PrismaClientKnownRequestError ||
+      e instanceof PrismaClientUnknownRequestError
+    ) {
+      console.log(
+        "ERROR OUCCURED FROM PRISMA SIDE",
+        e.name,
+        e.message,
+        e.cause
+      );
+    } else console.log("ERROR OUCCRED UNKNOWN", e);
+  }
 };
 
 const analysizeAndSetScore = async (
