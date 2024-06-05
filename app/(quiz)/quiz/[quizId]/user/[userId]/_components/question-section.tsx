@@ -107,6 +107,7 @@ const QuestionSection = ({ data, quizId, userId }: Props) => {
               <div className="grid sm:grid-cols-2 gap-2">
                 {d.options.map((opt, idx) => (
                   <label
+                    key={idx}
                     className={clsx(
                       "flex items-center gap-2 p-3 rounded-md bg-gray-100 dark:bg-gray-800 cursor-pointer",
 

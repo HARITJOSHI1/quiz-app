@@ -129,7 +129,7 @@ export const UserDashboard = ({
             </Card>
           )}
           {allQuizzes.map((q, idx) => (
-            <Accordion type="multiple">
+            <Accordion type="multiple" key={idx}>
               <AccordionItem value="item-1">
                 <AccordionTrigger
                   className="text-3xl font-medium hover:no-underline relative"
