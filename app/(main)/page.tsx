@@ -87,18 +87,6 @@ const page = async () => {
             Unleash Your Knowledge. Challenge Your Friends. Master the Game.
           </span>
         </div>
-
-        {/* <div className="mt-4 h-lvh w-full relative md:relative md:h-full md:w-full rounded-md drop-shadow-custom p-10">
-          <Image
-            src="/assets/d2.png"
-            alt="dashboard"
-            fill
-            objectFit="cover"
-            className="rounded-t-md md:rounded-md"
-            quality={90}
-            priority
-          />
-        </div> */}
       </section>
 
       <section className="h-[70vh] md:h-[70vh] min-[900px]:h-lvh mt-36 relative">
@@ -138,6 +126,7 @@ const page = async () => {
       </section>
 
       <footer className="bg-[#1e293b] text-white py-8">
+        <button onClick={() => console.log("Helooo")}>do something</button>
         <div className="container mx-auto px-4 flex flex-col items-center space-y-6">
           <div className="flex items-center space-x-2">
             <span className="text-xl font-bold">QuizMaster</span>
