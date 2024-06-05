@@ -3,6 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
+
+export const maxDuration = 17;
+
 const techStack = [
   {
     path: "/assets/mongo.png",
