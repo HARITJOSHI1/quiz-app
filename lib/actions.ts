@@ -39,9 +39,8 @@ export const createOrGetUser = async (user: {
       where: { clerkUserId: user.clerkUserId },
     });
 
+    console.log("Before creating a user", alreadyUser);
     if (alreadyUser) return alreadyUser;
-
-    console.log("Before creating a user");
 
     const newUser = await db.user.create({ data: user });
     console.log("Here is my user", newUser);

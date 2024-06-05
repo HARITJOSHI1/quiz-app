@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 
 
-export const maxDuration = 17;
+export const maxDuration = 5;
 
 const techStack = [
   {
