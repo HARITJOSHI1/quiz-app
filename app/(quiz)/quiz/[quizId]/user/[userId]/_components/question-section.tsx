@@ -90,8 +90,6 @@ const QuestionSection = ({ data, quizId, userId }: Props) => {
         return;
       }
     } catch (e) {
-      console.log(e);
-
       setIsSubmit(false);
       setAnswers({});
       setError({ message: "Something went wrong" });

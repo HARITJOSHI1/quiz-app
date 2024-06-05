@@ -39,14 +39,12 @@ export const UserDashboard = ({
   const router = useRouter();
 
   const handleSelectedQuiz = async (quizId: string) => {
-    console.log("Selected quiz ID:", quizId);
 
     if (selectedQuiz[quizId] || selectedQuiz[quizId] === null) return;
 
     setIsLoading(true);
     try {
       const quiz = await getSingleQuizPerformance(quizId);
-      console.log("Fetched quiz:", quiz);
 
       const newQuizEntry = {
         [quizId]: quiz,
@@ -58,8 +56,6 @@ export const UserDashboard = ({
       setIsLoading(false);
     }
   };
-
-  console.log(selectedQuiz);
 
   return (
     <div className="flex flex-col">
