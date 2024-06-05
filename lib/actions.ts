@@ -25,7 +25,7 @@ export const createOrGetUser = async (user: {
   clerkUserId: string;
 }) => {
 
-  console.log('Searching already exist user user');
+  console.log('Searching already exist user user logged database instance', db);
 
   const alreadyUser = await db.user.findUnique({
     where: { clerkUserId: user.clerkUserId },
