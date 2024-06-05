@@ -1,5 +1,3 @@
-'use client';
-
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Image from "next/image";
 import Link from "next/link";
@@ -128,7 +126,6 @@ const page = async () => {
       </section>
 
       <footer className="bg-[#1e293b] text-white py-8">
-        <button onClick={() => console.log("Helooo")}>do something</button>
         <div className="container mx-auto px-4 flex flex-col items-center space-y-6">
           <div className="flex items-center space-x-2">
             <span className="text-xl font-bold">QuizMaster</span>

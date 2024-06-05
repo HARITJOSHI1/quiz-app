@@ -79,6 +79,8 @@ const Navigation = ({ user }: DBUserInfo) => {
             <UserButton
               appearance={{ elements: { avatarBox: "w-[40px] h-[40px]" } }}
             />
+
+            <button onClick={() => console.log("yoooo")}>click me</button>
             <Button
               onClick={async () => {
                 const user = await createOrGetUser({
