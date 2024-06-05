@@ -32,7 +32,7 @@ export default async function page({ params }: Props) {
     id: params.quizId,
     endTime: new Date(),
     status: "STARTED",
-    userId: user.id,
+    userId: user!.id,
   });
 
   return (
@@ -51,7 +51,7 @@ export default async function page({ params }: Props) {
           <QuestionSection
             data={data}
             quizId={params.quizId}
-            userId={user.id}
+            userId={user!.id}
           />
         </div>
       </div>
