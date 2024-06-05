@@ -21,18 +21,21 @@ const QuestionSection = ({ data, quizId, userId }: Props) => {
   const [isSubmit, setIsSubmit] = useState(false);
   const [OSubmit, OSetSubmit] = useOptimistic(isSubmit);
   const [error, setError] = useState<{ message: string }>();
+
+  const [scoreSet, setScoreSet] = useState<{ [index: string]: number }>({});
   const router = useRouter();
 
   useEffect(() => {
     if (!OSubmit) return;
-    const id = setTimeout(() => router.push(`/dashboard/${userId}`), 5000);
+    const id = setTimeout(() => router.push(`/dashboard/${userId}`), 2000);
 
     return () => clearTimeout(id);
   }, [OSubmit]);
 
   const handleAnswers = (
     e: React.ChangeEvent<HTMLInputElement>,
-    questionId: string
+    questionId: string,
+    marks: { [id: string]: number }
   ) => {
     const { value, name } = e.target;
     const [_, index, id] = name.split("-");
@@ -51,17 +54,22 @@ const QuestionSection = ({ data, quizId, userId }: Props) => {
     };
 
     setAnswers({ ...answers, ...answerState });
+    setScoreSet({ ...scoreSet, ...marks });
   };
 
   const handleSubmit = async () => {
+    let notAttempted = 0;
     const query = Object.values(data).map((q, idx) => {
-      if (!answers[idx + 1])
+      if (!answers[idx + 1]) {
+        notAttempted += 1;
         return {
           answerText: "",
           correctOptionIndex: -1,
           questionId: q.id,
           quizId,
         };
+      }
+
       return answers[idx + 1].final;
     }) as Required<Answers>[];
 
@@ -69,8 +77,14 @@ const QuestionSection = ({ data, quizId, userId }: Props) => {
       OSetSubmit(true);
       setIsSubmit(true);
 
-      const updatedQuiz = await submitQuiz(query, quizId);
-      if (updatedQuiz.status === "FINISHED") {
+      const updatedQuiz = await submitQuiz(
+        query,
+        20 - notAttempted,
+        quizId,
+        userId,
+        scoreSet!
+      );
+      if (updatedQuiz.Quiz.status === "FINISHED") {
         setIsSubmit(true);
         setError(undefined);
         return;
@@ -83,8 +97,6 @@ const QuestionSection = ({ data, quizId, userId }: Props) => {
       setError({ message: "Something went wrong" });
     }
   };
-
-  console.log(answers);
 
   return (
     <div className="max-h-[500px] overflow-y-auto px-6 py-8 sm:px-10 sm:py-10 flex flex-col items-center">
@@ -128,7 +140,10 @@ const QuestionSection = ({ data, quizId, userId }: Props) => {
                       name={`question-${index + 1}-${d.correctOptionIndex}`}
                       value={opt}
                       onChange={(e) => {
-                        handleAnswers(e, d.id);
+                        handleAnswers(e, d.id, {
+                          [String(index)]:
+                            idx === d.correctOptionIndex ? d.marks : 0,
+                        });
                       }}
                       className="w-4 h-4 text-primary-600 bg-gray-100 border-gray-300 focus:ring-primary-500 dark:bg-gray-800 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
                     />
@@ -151,7 +166,7 @@ const QuestionSection = ({ data, quizId, userId }: Props) => {
 
       {OSubmit && !error && (
         <div className="w-full bg-green-400 text-white p-2 rounded-md">
-          Answers submitted. You will be redirected to your dashboard in 5
+          Answers submitted. You will be redirected to your dashboard in 2
           seconds.
         </div>
       )}

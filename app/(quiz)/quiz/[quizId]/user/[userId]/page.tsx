@@ -2,7 +2,6 @@ import { db } from "@/db";
 import { Metadata } from "next";
 import QuestionSection from "./_components/question-section";
 import { createQuiz, createOrGetUser } from "@/lib/actions";
-import ObjectId from "bson-objectid";
 import { currentUser } from "@clerk/nextjs/server";
 
 type Props = {
@@ -31,7 +30,7 @@ export default async function page({ params }: Props) {
 
   await createQuiz({
     id: params.quizId,
-    endTime: null,
+    endTime: new Date(),
     status: "STARTED",
     userId: user.id,
   });
@@ -44,7 +43,8 @@ export default async function page({ params }: Props) {
             {data.length} Question Quiz
           </h1>
           <p className="mt-2 text-gray-500 dark:text-gray-400">
-            Test your knowledge with this fun and challenging quiz.
+            Test your knowledge with this fun and challenging quiz. Each
+            question is of 2 marks.
           </p>
         </div>
         <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden">

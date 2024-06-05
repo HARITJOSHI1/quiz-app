@@ -17,6 +17,7 @@ model Question {
     quiz               Quiz?     @relation(fields: [quizId], references: [id])
     quizId             String?   @db.ObjectId
     Answers            Answers[]
+    marks              Int
 }
 
 model Answers {
@@ -70,7 +71,8 @@ model UserPerformance {
     quizId String @unique @db.ObjectId
 
     score        Int
-    averageScore Int
+    averageScore Float
     lowestScore  Int
     highestScore Int
+    attempted    Int
 }

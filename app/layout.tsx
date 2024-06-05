@@ -4,7 +4,7 @@ import "./globals.css";
 import { DM_Sans, Inter } from "next/font/google";
 
 export const metadata: Metadata = {
-  title: "Quizzer",
+  title: "QuizMaster",
   description: "Quiz app to test yout youg mind",
 };
 

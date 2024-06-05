@@ -1,5 +1,6 @@
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const techStack = [
@@ -73,26 +74,23 @@ const page = async () => {
         />
       </div>
 
-      <section className="w-full pt-36 pl-2 pr-2 md:pl-8 md:pr-8 relative flex flex-col items-center h-lvh lg:flex-row lg:justify-between lg:gap-[8rem] lg:relative">
-        <div className="mb-10 lg:w-2/5 lg:relative lg:top-[-5rem] flex flex-col items-center lg:items-start">
+      <section className="w-full pt-36 pl-4 lg:h-lvh pr-4 md:pl-2 md:pr-2 relative flex flex-col items-center md:h-[60vh] justify-center lg:gap-[8rem] lg:relative">
+        <div className="mb-10 lg:w-full lg:relative lg:top-[-5rem] flex flex-col items-center">
           <div className="mb-4">
-            <span className="text-6xl font-bold">Welcome to </span>
-            <span
-              className="relative pt-30 pb-2 min-[320px]:before:left-[-15rem] min-[608px]:before:left-[7rem]
-            before:absolute before:left-[3rem] md:before:left-[7rem] lg:before:left-[-15rem] before:bottom-[16px] before:w-[200px] before:h-[15px] before:transform before:-skew-x-[12deg] before:-translate-x-1/2 before:bg-gradient-to-r from-teal-100 to-emerald-400 before:-z-10 text-6xl font-bold"
-            >
-              Quizzer
+            <span className="text-5xl lg:text-8xl font-bold">Welcome to </span>
+            <span className="relative pt-30 pb-2 text-5xl lg:text-8xl font-bold">
+              QuizMaster
             </span>
           </div>
 
-          <span className="text-md text-slate-600">
+          <span className="text-md md:text-xl text-slate-600 text-wrap">
             Unleash Your Knowledge. Challenge Your Friends. Master the Game.
           </span>
         </div>
 
-        <div className="mt-4 h-lvh w-full relative md:relative md:h-full md:w-full rounded-md drop-shadow-custom p-10">
+        {/* <div className="mt-4 h-lvh w-full relative md:relative md:h-full md:w-full rounded-md drop-shadow-custom p-10">
           <Image
-            src="/assets/dashboard.png"
+            src="/assets/d2.png"
             alt="dashboard"
             fill
             objectFit="cover"
@@ -100,7 +98,7 @@ const page = async () => {
             quality={90}
             priority
           />
-        </div>
+        </div> */}
       </section>
 
       <section className="h-[70vh] md:h-[70vh] min-[900px]:h-lvh mt-36 relative">
@@ -129,7 +127,7 @@ const page = async () => {
         </div>
       </section>
 
-      <section className="h-[70vh] md:h-[70vh] min-[900px]:h-lvh mt-24 relative flex flex-col items-center overflow-hidden">
+      <section className="h-[auto] mb-20 md:h-[50vh] mt-24 relative flex flex-col items-center overflow-hidden">
         <span className="text-4xl font-bold text-center md:text-6xl">
           {" "}
           Tech stack used
@@ -138,6 +136,28 @@ const page = async () => {
           <HeroSliderComponent />
         </div>
       </section>
+
+      <footer className="bg-[#1e293b] text-white py-8">
+        <div className="container mx-auto px-4 flex flex-col items-center space-y-6">
+          <div className="flex items-center space-x-2">
+            <span className="text-xl font-bold">QuizMaster</span>
+          </div>
+          <nav className="flex flex-wrap justify-center gap-4">
+            <Link href="#" className="hover:underline" prefetch={false}>
+              About
+            </Link>
+            <Link href="#" className="hover:underline" prefetch={false}>
+              Contact
+            </Link>
+            <Link href="#" className="hover:underline" prefetch={false}>
+              Privacy Policy
+            </Link>
+          </nav>
+          <p className="text-sm text-gray-400">
+            &copy; 2024 Quiz App. All rights reserved.
+          </p>
+        </div>
+      </footer>
     </>
   );
 };

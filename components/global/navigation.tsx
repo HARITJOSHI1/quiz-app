@@ -47,7 +47,7 @@ const Navigation = ({ user }: DBUserInfo) => {
             ></path>{" "}
           </svg>
 
-          <span className="text-xl font-bold">Quizzer</span>
+          <span className="text-xl font-bold">QuizMaster</span>
         </aside>
 
         <nav className="hidden md:block absolute left-[50%] top-[50%] transform translate-x-[-50%] translate-y-[-50%]">
