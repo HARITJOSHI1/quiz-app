@@ -86,6 +86,9 @@ const Navigation = ({ user }: DBUserInfo) => {
                   email,
                   clerkUserId,
                 });
+
+                console.log('From nav', user);
+                
                 router.push(`/dashboard/${user?.id}`);
               }}
               className="bg-teal-500 text-white p-2 px-7 rounded-md hover:bg-teal-600"
