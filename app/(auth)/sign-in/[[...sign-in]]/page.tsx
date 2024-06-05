@@ -1,4 +1,4 @@
-import AuthStyles from "@/app/_components/global/authStyles";
+import AuthStyles from "@/components/global/authStyles";
 import { SignIn } from "@clerk/nextjs";
 import React, { Suspense } from "react";
 

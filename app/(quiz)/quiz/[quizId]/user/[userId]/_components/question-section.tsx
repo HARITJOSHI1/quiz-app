@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/app/_components/ui/button";
+import { Button } from "@/components/ui/button";
 import { submitQuiz } from "@/lib/actions";
 import { Answers, Question } from "@prisma/client";
 import clsx from "clsx";

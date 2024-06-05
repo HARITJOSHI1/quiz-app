@@ -1,4 +1,4 @@
-import Navigation from "@/app/_components/global/navigation";
+import Navigation from "@/components/global/navigation";
 import ClientClerkProvider from "@/providers/clerk-provider";
 import { currentUser } from "@clerk/nextjs/server";
 import React, { ReactNode } from "react";

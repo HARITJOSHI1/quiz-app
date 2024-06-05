@@ -1,4 +1,4 @@
-import BouncyLoadingPage from "@/app/_components/global/bouncy-loading-page";
+import BouncyLoadingPage from "@/components/global/bouncy-loading-page";
 import React from "react";
 
 const loading = () => {
