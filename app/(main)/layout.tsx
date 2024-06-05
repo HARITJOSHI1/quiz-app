@@ -9,6 +9,9 @@ type Props = {
 
 const layout = async ({ children }: Props) => {
   const user = await currentUser();
+
+  console.log('Dev user', user);
+  
   return (
     <main className="h-full">
       <ClientClerkProvider>
