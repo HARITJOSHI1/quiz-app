@@ -1,7 +1,7 @@
 "use client";
 
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardContent } from "@/app/_components/ui/card";
+import { Button } from "@/app/_components/ui/button";
 import { JSX, SVGProps, cache, useEffect, useState } from "react";
 import { AnalyticalData, SelectedQuiz } from "@/lib/types";
 import {
@@ -9,13 +9,13 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
+} from "@/app/_components/ui/accordion";
 import { Quiz } from "@prisma/client";
 import clsx from "clsx";
 import { getSingleQuizPerformance } from "@/lib/actions";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import BouncyLoadingPage from "@/components/global/bouncy-loading-page";
+import BouncyLoadingPage from "@/app/_components/global/bouncy-loading-page";
 import { useRouter } from "next/navigation";
 import ObjectID from "bson-objectid";
 
